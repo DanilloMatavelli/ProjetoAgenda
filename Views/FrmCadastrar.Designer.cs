@@ -79,6 +79,7 @@
             // 
             txtSenha.Location = new Point(12, 166);
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '*';
             txtSenha.Size = new Size(180, 23);
             txtSenha.TabIndex = 6;
             txtSenha.TextChanged += txtSenha_TextChanged;
@@ -95,6 +96,7 @@
             // 
             txtRepitaSenha.Location = new Point(12, 230);
             txtRepitaSenha.Name = "txtRepitaSenha";
+            txtRepitaSenha.PasswordChar = '*';
             txtRepitaSenha.Size = new Size(180, 23);
             txtRepitaSenha.TabIndex = 8;
             txtRepitaSenha.TextChanged += txtRepitaSenha_TextChanged;
@@ -108,6 +110,7 @@
             btnCancelar.TabIndex = 10;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnCadastrar
             // 
@@ -119,6 +122,7 @@
             btnCadastrar.TabIndex = 11;
             btnCadastrar.Text = "CADASTRAR";
             btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.Click += btnCadastrar_Click;
             // 
             // label3
             // 
