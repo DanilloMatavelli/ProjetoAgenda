@@ -101,7 +101,7 @@ namespace ProjetoAgenda
         {
 
             MySqlConnection conexao = ConexaoDB.CriarConexao();
-      
+
             //Abrindo Conexão
             conexao.Open();
 
@@ -127,6 +127,11 @@ namespace ProjetoAgenda
             //Para fechar a janela
             this.Close();
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
