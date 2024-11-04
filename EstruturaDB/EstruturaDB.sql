@@ -8,3 +8,7 @@ CREATE TABLE tbUsuarios (
 );
 
 select * from tbUsuarios;
+
+//Para verificar se o usuario existe no banco de dados 
+select * from tbUsuarios
+where usuario="DAN3465" and binary senha="123456789";
