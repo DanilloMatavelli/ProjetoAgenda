@@ -70,7 +70,7 @@ namespace ProjetoAgenda.Controller
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
                 comando.Parameters.AddWithValue("@usuario", usuario);
-                comando.Parameters.AddWithValue("@senha", usuario);
+                comando.Parameters.AddWithValue("@senha", senha);
 
                 MySqlDataReader resultado = comando.ExecuteReader();
 

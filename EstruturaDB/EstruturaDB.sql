@@ -12,3 +12,11 @@ select * from tbUsuarios;
 //Para verificar se o usuario existe no banco de dados 
 select * from tbUsuarios
 where usuario="DAN3465" and binary senha="123456789";
+
+//Para Criar a tabela catgoria e ir adicionando as categorias
+CREATE TABLE tbCategoria (
+	cod_categoria int AUTO_INCREMENT primary key,
+    categoria VARCHAR(60) NOT NULL
+);
+
+select * from tbCategoria;
