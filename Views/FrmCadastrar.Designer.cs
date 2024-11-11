@@ -137,7 +137,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = SystemColors.ControlDark;
             ClientSize = new Size(399, 314);
             Controls.Add(label3);
             Controls.Add(btnCadastrar);
