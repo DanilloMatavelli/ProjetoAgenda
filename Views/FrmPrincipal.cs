@@ -24,11 +24,11 @@ namespace ProjetoAgenda.Views
 
         private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
 
-        {   
-            
+        {
+
             FrmCategoria newForm = new FrmCategoria();
             newForm.Show();
-            
+
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +39,13 @@ namespace ProjetoAgenda.Views
         private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            FrmUsuários newForm = new FrmUsuários();
+            newForm.Show();
         }
     }
 }
