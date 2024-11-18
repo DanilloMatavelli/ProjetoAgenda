@@ -23,3 +23,6 @@ select * from tbCategoria;
 
 //Comando para excluir categoria no banco de Dados
 DELETE FROM tbCategoria WHERE cod_categoria = @cod_categoria;
+
+//Criando um usuario 
+CREATE USER 'usuario'@'%' IDENTIFIED BY 'senha123';

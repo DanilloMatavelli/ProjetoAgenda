@@ -1,4 +1,6 @@
-﻿using ProjetoAgenda.Controller;
+﻿using MySql.Data.MySqlClient;
+using ProjetoAgenda.Controller;
+using ProjetoAgenda.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,5 +28,23 @@ namespace ProjetoAgenda
 
             MessageBox.Show(resultado.ToString());
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+                try
+                {
+                    MySqlConnection conexao = ConexaoDB.CriarConexao("Dan2604", "12121967");
+                    conexao.Open();
+                    MessageBox.Show("Conexão deu certo!");
+
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show($"Erro ao conectar {erro.Message}");
+                }
+
+            }
+        }
     }
-}
+

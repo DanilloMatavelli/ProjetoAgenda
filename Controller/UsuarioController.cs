@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using ProjetoAgenda.Data;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace ProjetoAgenda.Controller
 {
@@ -20,13 +22,16 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "INSERT INTO tbUsuarios (nome, usuario,senha) VALUES (@nome, @usuario, @senha);";
+                string sql = "INSERT INTO tbUsuarios (nome, usuario,senha) VALUES (@nome, @usuario, @senha);" +
+                              $"CREATE USER '{usuario}'@'%' IDENTIFIED BY '{senha}';" +
+                              "GRANT SELECT,INSERT,DELETE, UPDATE ON dbagenda.* TO 'Huck'@'%'";
 
                 //Abri a conexão com o banco
                 conexao.Open();
 
                 //Esse cara é o responsavel por executar o comando SQL
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
+
 
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
@@ -185,7 +190,8 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "UPDATE tbUsuarios SET = @senha WHERE usuario = @usuario;";
+                string sql = "UPDATE tbUsuarios SET senha = @senha WHERE usuario = @usuario;";
+                
 
 
                 //Abri a conexão com o banco
