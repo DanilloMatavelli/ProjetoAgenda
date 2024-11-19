@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using ProjetoAgenda.Data;
+using ProjetoAgenda.VariableGlobal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -83,6 +84,8 @@ namespace ProjetoAgenda.Controller
 
                 if (resultado.Read())
                 {
+                    UserSession.usuario = usuario;
+                    UserSession.senha = senha;
                     conexao.Clone();
                     return true;
                 }

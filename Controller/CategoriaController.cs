@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoAgenda.Data;
+using ProjetoAgenda.VariableGlobal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,8 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
-                MySqlConnection conexao = ConexaoDB.CriarConexao();
+                MySqlConnection conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
+                
 
                 //Comando SQL que será executado
                 string sql = "INSERT INTO tbCategoria (categoria) VALUES (@categoria);";
@@ -32,6 +34,8 @@ namespace ProjetoAgenda.Controller
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
                 comando.Parameters.AddWithValue("@categoria", categoria);
+                
+
 
                 //Executando no banco de dados
                 int LinhasAfetadas = comando.ExecuteNonQuery();
@@ -69,6 +73,7 @@ namespace ProjetoAgenda.Controller
                 //Montei o SELECT que retorna todas as categorias
                 string sql = @"select cod_categoria AS 'Código', categoria AS 'categoria'
                             from tbCategoria;";
+                
 
                 //Abri Conexão
                 conexao.Open();
