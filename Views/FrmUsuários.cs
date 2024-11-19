@@ -58,14 +58,14 @@ namespace ProjetoAgenda.Views
         private void btnAlterarSenha_Click(object sender, EventArgs e)
         {
             //Pegando os dados do Data Grid View
-            string senha = txtAlteraSenha.Text;
+            string novaSenha = txtAlteraSenha.Text;
             string usuario = dgvUsuarios.SelectedRows[0].Cells[0].Value.ToString();
 
             //Instanciando o objeto categoriaController
             UsuarioController controleUsuario = new UsuarioController();
 
             //Inserindo o usuário
-            bool resultado = controleUsuario.AlteraSenha(senha,usuario);
+            bool resultado = controleUsuario.AlteraSenha(novaSenha,usuario);
 
             if (resultado)
             {

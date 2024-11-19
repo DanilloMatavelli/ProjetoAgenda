@@ -41,7 +41,7 @@ namespace ProjetoAgenda
                 }
                 catch (Exception erro)
                 {
-                    MessageBox.Show($"Erro ao conectar {erro.Message}");
+                    MessageBox.Show($"Erro ao conectar: {erro.Message}");
                 }
 
             }

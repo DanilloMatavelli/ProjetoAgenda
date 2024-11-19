@@ -181,7 +181,7 @@ namespace ProjetoAgenda.Controller
             }
 
         }
-        public bool AlteraSenha(string senha, string usuario)
+        public bool AlteraSenha(string novaSenha, string usuario)
         {
 
             try
@@ -190,7 +190,7 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "UPDATE tbUsuarios SET senha = @senha WHERE usuario = @usuario;";
+                string sql = "UPDATE tbUsuarios SET senha = @novaSenha WHERE usuario = @usuario;";
                 
 
 
@@ -202,7 +202,7 @@ namespace ProjetoAgenda.Controller
 
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
-                comando.Parameters.AddWithValue("@senha", senha);
+                comando.Parameters.AddWithValue("@novaSenha", novaSenha);
                 comando.Parameters.AddWithValue("@usuario", usuario);
 
 
