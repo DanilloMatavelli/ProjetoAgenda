@@ -22,9 +22,7 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "INSERT INTO tbUsuarios (nome, usuario,senha) VALUES (@nome, @usuario, @senha);" +
-                              $"CREATE USER '{usuario}'@'%' IDENTIFIED BY '{senha}';" +
-                              "GRANT SELECT,INSERT,DELETE, UPDATE ON dbagenda.* TO 'Huck'@'%'";
+                string sql = $"INSERT INTO tbUsuarios (nome,usuario,senha) VALUES (@nome, @usuario, @senha)";
 
                 //Abri a conexão com o banco
                 conexao.Open();
@@ -47,10 +45,13 @@ namespace ProjetoAgenda.Controller
 
                 if (LinhasAfetadas > 0)
                 {
+                    string sql2 = $@"CREATE USER '{@usuario}'@'%' IDENTIFIED BY '{@senha}';
+                    GRANT ALL PRIVILEGES ON dbagenda.* TO { usuario}'@'%';";
+                    comando = new MySqlCommand(sql2, conexao);
                     return true;
                 }
                 else
-                {
+                { 
                     return false;
                 }
             }
@@ -181,7 +182,7 @@ namespace ProjetoAgenda.Controller
             }
 
         }
-        public bool AlteraSenha(string novaSenha, string usuario)
+        public bool AlteraSenha(string Senha, string usuario)
         {
 
             try
@@ -190,7 +191,7 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "UPDATE tbUsuarios SET senha = @novaSenha WHERE usuario = @usuario;";
+                string sql = "UPDATE tbusuarios SET Senha = @Senha WHERE usuario = @usuario;";
                 
 
 
@@ -202,7 +203,7 @@ namespace ProjetoAgenda.Controller
 
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
-                comando.Parameters.AddWithValue("@novaSenha", novaSenha);
+                comando.Parameters.AddWithValue("@Senha", Senha);
                 comando.Parameters.AddWithValue("@usuario", usuario);
 
 

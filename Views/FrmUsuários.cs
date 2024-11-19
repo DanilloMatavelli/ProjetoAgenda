@@ -59,7 +59,7 @@ namespace ProjetoAgenda.Views
         {
             //Pegando os dados do Data Grid View
             string novaSenha = txtAlteraSenha.Text;
-            string usuario = dgvUsuarios.SelectedRows[0].Cells[0].Value.ToString();
+            string usuario = dgvUsuarios.SelectedRows[0].Cells[1].Value.ToString();
 
             //Instanciando o objeto categoriaController
             UsuarioController controleUsuario = new UsuarioController();

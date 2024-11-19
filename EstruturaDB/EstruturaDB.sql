@@ -16,7 +16,8 @@ where usuario="DAN3465" and binary senha="123456789";
 //Para Criar a tabela catgoria e ir adicionando as categorias
 CREATE TABLE tbCategoria (
 	cod_categoria int AUTO_INCREMENT primary key,
-    categoria VARCHAR(60) NOT NULL
+    categoria VARCHAR(60) NOT NULL,
+	usuario varchar(20) NOT NULL
 );
 
 select * from tbCategoria;
@@ -26,3 +27,18 @@ DELETE FROM tbCategoria WHERE cod_categoria = @cod_categoria;
 
 //Criando um usuario 
 CREATE USER 'usuario'@'%' IDENTIFIED BY 'senha123';
+
+//Triggers
+DELIMITER $$
+
+CREATE TRIGGER trInsertCategoria
+	BEFORE 
+	INSERT 
+	ON tbcategoria
+	FOR EACH ROW
+BEGIN
+	SET NEW.usuario = CURRENT_USER();
+END;
+$$
+
+DELIMITER ;
