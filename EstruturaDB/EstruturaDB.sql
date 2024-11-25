@@ -42,3 +42,49 @@ END;
 $$
 
 DELIMITER ;
+
+Insert INTO tbcategoria (categoria,usuario)
+VALUES('amigos' , 'Dan2604');
+
+select * from tbcategoria;
+
+select nome
+from categorias
+where usuario = "Dan2604";
+
+SELECT cod_categoria AS 'Código', categoria AS 'Categoria'
+                            FROM tbCategoria
+                            WHERE usuario = @usuario;
+
+// Criando Log
+
+CREATE TABLE tbLog(
+	cod_log INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR (20),
+    date_hora DATETIME,
+    descriçao VARCHAR (60)
+);
+
+DELIMITER $$
+
+CREATE TRIGGER trlogcategoriadelete
+	AFTER
+	DELETE
+	ON tbcategoria
+	FOR EACH ROW
+BEGIN
+	INSERT INTO tblog
+		(usuario,
+         date_hora,
+         descriçao)
+	VALUES
+		(USER(),
+        current_TIMESTAMP(),
+        CONCAT("A categoria ", old.categoria, "foi excluida.")
+        );
+        
+    
+END;
+$$
+
+DELIMITER ;

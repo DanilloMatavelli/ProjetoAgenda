@@ -95,5 +95,30 @@ namespace ProjetoAgenda.Views
         {
 
         }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            //Pegando os dados do Data Grid View
+            int codigo = Convert.ToInt32(dgvCategoria.SelectedRows[0].Cells[0].Value);
+
+            //Instanciando o objeto categoriaController
+            CategoriaController controleUsuario = new CategoriaController();
+
+            //Inserindo o usuário
+            bool resultado = controleUsuario.AlterarCategoria(categoria);
+
+            if (resultado)
+            {
+                MessageBox.Show("Categoria excluida com sucesso");
+                CategoriaController controleCategoria = new CategoriaController();
+                DataTable tabela = controleCategoria.GetCategorias();
+                dgvCategoria.DataSource = tabela;
+            }
+
+            else
+            {
+                MessageBox.Show("Não foi possivel alterar a categoria");
+            }
+        }
     }
 }
