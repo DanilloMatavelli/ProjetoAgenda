@@ -35,7 +35,6 @@
             dgvCategoria = new DataGridView();
             btnExcluir = new Button();
             txtExcluirCategoria = new TextBox();
-            button1 = new Button();
             btnAlterar = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategoria).BeginInit();
@@ -112,15 +111,6 @@
             txtExcluirCategoria.Size = new Size(153, 23);
             txtExcluirCategoria.TabIndex = 4;
             // 
-            // button1
-            // 
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // btnAlterar
             // 
             btnAlterar.Location = new Point(91, 144);
@@ -138,7 +128,6 @@
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(508, 219);
             Controls.Add(btnAlterar);
-            Controls.Add(button1);
             Controls.Add(txtExcluirCategoria);
             Controls.Add(btnExcluir);
             Controls.Add(dgvCategoria);
@@ -163,7 +152,6 @@
         private DataGridView dgvCategoria;
         private Button btnExcluir;
         private TextBox txtExcluirCategoria;
-        private Button button1;
         private Button btnAlterar;
     }
 }

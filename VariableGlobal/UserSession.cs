@@ -41,7 +41,7 @@ namespace ProjetoAgenda.VariableGlobal
             get { return _nome; }
             set
             {
-                value = value.ToUpper();
+                //value = value.ToUpper();
                 _nome = value;
             }
         }

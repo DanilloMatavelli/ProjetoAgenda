@@ -68,11 +68,13 @@ namespace ProjetoAgenda.Controller
             try
             {
                 // Inserindo a conexão usando a ConexaoDB que eu já havia criado
-                conexao = ConexaoDB.CriarConexao();
+                conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //Montei o SELECT que retorna todas as categorias
-                string sql = @"select cod_categoria AS 'Código', categoria AS 'categoria'
-                            from tbCategoria;";
+                //Alterar select para o usuario so conseguir ver suas categorias 
+                string sql = @"SELECT cod_categoria AS 'Código', categoria AS 'Categoria'
+                             FROM tbCategoria
+                             WHERE usuario = User();";
                 
 
                 //Abri Conexão
