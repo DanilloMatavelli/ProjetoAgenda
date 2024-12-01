@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtCategoria = new TextBox();
             btnAlterar = new Button();
             btnExcluir = new Button();
-            btnCadastrar = new Button();
+            btnCadastrarContato = new Button();
             label3 = new Label();
             txtTelefone = new TextBox();
             label2 = new Label();
@@ -39,17 +40,16 @@
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             dgvAgenda = new DataGridView();
-            comBoxCategoria = new ComboBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAgenda).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(comBoxCategoria);
+            groupBox1.Controls.Add(txtCategoria);
             groupBox1.Controls.Add(btnAlterar);
             groupBox1.Controls.Add(btnExcluir);
-            groupBox1.Controls.Add(btnCadastrar);
+            groupBox1.Controls.Add(btnCadastrarContato);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(txtTelefone);
             groupBox1.Controls.Add(label2);
@@ -62,6 +62,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Agenda";
             // 
+            // txtCategoria
+            // 
+            txtCategoria.Location = new Point(15, 210);
+            txtCategoria.Name = "txtCategoria";
+            txtCategoria.Size = new Size(182, 23);
+            txtCategoria.TabIndex = 9;
+            // 
             // btnAlterar
             // 
             btnAlterar.Location = new Point(15, 322);
@@ -70,6 +77,7 @@
             btnAlterar.TabIndex = 8;
             btnAlterar.Text = "Alterar";
             btnAlterar.UseVisualStyleBackColor = true;
+            btnAlterar.Click += btnAlterar_Click;
             // 
             // btnExcluir
             // 
@@ -79,15 +87,17 @@
             btnExcluir.TabIndex = 7;
             btnExcluir.Text = "Excluir";
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
-            // btnCadastrar
+            // btnCadastrarContato
             // 
-            btnCadastrar.Location = new Point(15, 275);
-            btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(83, 32);
-            btnCadastrar.TabIndex = 1;
-            btnCadastrar.Text = "Cadastrar";
-            btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrarContato.Location = new Point(15, 275);
+            btnCadastrarContato.Name = "btnCadastrarContato";
+            btnCadastrarContato.Size = new Size(83, 32);
+            btnCadastrarContato.TabIndex = 1;
+            btnCadastrarContato.Text = "Cadastrar";
+            btnCadastrarContato.UseVisualStyleBackColor = true;
+            btnCadastrarContato.Click += btnCadastrarContato_Click;
             // 
             // label3
             // 
@@ -138,19 +148,11 @@
             dgvAgenda.Size = new Size(384, 394);
             dgvAgenda.TabIndex = 9;
             // 
-            // comBoxCategoria
-            // 
-            comBoxCategoria.FormattingEnabled = true;
-            comBoxCategoria.Location = new Point(15, 202);
-            comBoxCategoria.Name = "comBoxCategoria";
-            comBoxCategoria.Size = new Size(182, 23);
-            comBoxCategoria.TabIndex = 10;
-            // 
             // FrmAgenda
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 431);
             Controls.Add(dgvAgenda);
             Controls.Add(groupBox1);
             Name = "FrmAgenda";
@@ -173,8 +175,8 @@
         private Label label3;
         private Button btnAlterar;
         private Button btnExcluir;
-        private Button btnCadastrar;
+        private Button btnCadastrarContato;
         private DataGridView dgvAgenda;
-        private ComboBox comBoxCategoria;
+        private TextBox txtCategoria;
     }
 }

@@ -172,3 +172,11 @@ SELECT cod_contato AS 'Código',
        categoria AS 'Trabalho'
 FROM tbContatos
 WHERE usuario = USER();
+
+-- Comando para excluir Contato
+DELETE FROM tbContatos WHERE cod_contato = @cod_contato;
+
+-- Comando para alterar contato
+UPDATE tbcontatos SET contato = @contato WHERE cod_contato = @cod_contato;
+
+-- Fazer log para Adicionar contato, alterar e excluir

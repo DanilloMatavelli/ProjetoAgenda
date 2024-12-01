@@ -69,7 +69,7 @@ namespace ProjetoAgenda.Views
             //Instanciando o objeto categoriaController
             CategoriaController controleUsuario = new CategoriaController();
 
-            //Inserindo o usuário
+            //Inserindo a categoria
             bool resultado = controleUsuario.ExcluirCategoria(codigo);
 
             if (resultado)

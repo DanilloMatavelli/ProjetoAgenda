@@ -12,7 +12,8 @@ namespace ProjetoAgenda.Controller
 {
     internal class AgendaController
     {
-        public bool AddContato(int contato , int telefone, string categoria)
+
+        public bool AddContato(string contato ,int telefone, string categoria)
         {
             try
             {
@@ -53,7 +54,7 @@ namespace ProjetoAgenda.Controller
             }
             catch (Exception erro)
             {
-                MessageBox.Show($"Erro ao inserir categoria: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Erro ao adicionar contato: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -92,7 +93,7 @@ namespace ProjetoAgenda.Controller
             }
             catch (Exception erro)
             {
-                MessageBox.Show($"ERRO AO RECUPERAR CATEGORIAS: {erro.Message}");
+                MessageBox.Show($"ERRO AO RECUPERAR CONTATOS: {erro.Message}");
                 return new DataTable();
             }
             finally
@@ -102,5 +103,93 @@ namespace ProjetoAgenda.Controller
 
         }
 
+        public bool ExcluirContato(string contato)
+        {
+            try
+            {
+                //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
+                MySqlConnection conexao = ConexaoDB.CriarConexao();
+
+                //Comando SQL que será executado
+                string sql = "DELETE FROM tbContatos WHERE cod_contato = @cod_contato;";
+
+                //Abri a conexão com o banco
+                conexao.Open();
+
+                //Esse cara é o responsavel por executar o comando SQL
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                //Estou trocando o valor dos @ pelas informações que serão cadastradas
+                //Essas informações vieram dos parametros da função
+                comando.Parameters.AddWithValue("@cod_contato", contato);
+
+                //Executando no banco de dados
+                int LinhasAfetadas = comando.ExecuteNonQuery();
+
+                //Fecha a conexão com o banco
+                conexao.Close();
+
+
+                if (LinhasAfetadas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao excluir Contato: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+        }
+
+        public bool AlterarContato(string contato)
+        {
+            try
+            {
+
+                //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
+                MySqlConnection conexao = ConexaoDB.CriarConexao();
+
+                //Comando SQL que será executado
+                string sql = "UPDATE tbcontatos SET contato = @contato WHERE cod_contato = @cod_contato;";
+
+
+                //Abri a conexão com o banco
+                conexao.Open();
+
+                //Esse cara é o responsavel por executar o comando SQL
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                //Estou trocando o valor dos @ pelas informações que serão cadastradas
+                //Essas informações vieram dos parametros da função
+                comando.Parameters.AddWithValue("@cod_contato", contato);
+
+
+                //Executando no banco de dados
+                int LinhasAfetadas = comando.ExecuteNonQuery();
+
+                //Fecha a conexão com o banco
+                conexao.Close();
+
+                if (LinhasAfetadas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao alterar Contato: {erro.Message}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+        }
     }
 }
