@@ -145,6 +145,7 @@
             dgvAgenda.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAgenda.Location = new Point(356, 27);
             dgvAgenda.Name = "dgvAgenda";
+            dgvAgenda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAgenda.Size = new Size(384, 394);
             dgvAgenda.TabIndex = 9;
             // 

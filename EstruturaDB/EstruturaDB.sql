@@ -7,7 +7,7 @@ CREATE TABLE tbUsuarios (
     senha VARCHAR(30)
 );
 
-select * from tbcategoria
+select * from tbcontatos
 where usuario="DAN3465" and binary senha="123456789";
 
 -- Para Criar a tabela catgoria e ir adicionando as categorias
@@ -156,8 +156,9 @@ WHERE usuario LIKE 'DUDA';
 CREATE TABLE tbContatos (
 	cod_contato INT AUTO_INCREMENT PRIMARY KEY,
     contato VARCHAR (30) NOT NULL,
-    Telefone INT NOT NULL,
+    Telefone VARCHAR (30) NOT NULL,
     Categoria VARCHAR(30) NOT NULL
+	
 );
 
 -- Testando o comando Adicionar contato
@@ -166,7 +167,7 @@ INSERT INTO tbContatos (contato, telefone, categoria)
                 
 -- Testando comando do GET Contatos
                 
-SELECT cod_contato AS 'Código', 
+SELECT cod_contato AS 'cod_contato', 
        contato AS 'Matheus', 
        telefone AS '9999-9999', 
        categoria AS 'Trabalho'
@@ -177,6 +178,44 @@ WHERE usuario = USER();
 DELETE FROM tbContatos WHERE cod_contato = @cod_contato;
 
 -- Comando para alterar contato
-UPDATE tbcontatos SET contato = @contato WHERE cod_contato = @cod_contato;
+UPDATE tbcontatos SET contato = @contato, telefone = @telefone, categoria= @categoria WHERE cod_contato = @cod_contato;
 
--- Fazer log para Adicionar contato, alterar e excluir
+--  Criando a tabela Log Contatos
+
+CREATE TABLE tbLogContato(
+	cod_log INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR (20),
+    date_hora DATETIME,
+    descriçao VARCHAR (60)
+);
+
+-- lOG PARA ADICIONAR Contato 
+
+DELIMITER $$
+
+CREATE TRIGGER trlogcontatoadicionar
+	AFTER
+	INSERT 
+	ON tbcontatos
+	FOR EACH ROW
+BEGIN
+	INSERT INTO tblog
+		(usuario,
+         date_hora,
+         descriçao)
+	VALUES
+		(USER(),
+        current_TIMESTAMP(),
+        CONCAT("O contato ", new.categoria, "foi adicionada.")
+        );
+        
+    
+END;
+$$
+
+DELIMITER ;
+
+
+
+
+-- Fazer log para Adicionar alterar e excluir contato

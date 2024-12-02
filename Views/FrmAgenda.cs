@@ -18,18 +18,24 @@ namespace ProjetoAgenda.Views
             InitializeComponent();
         }
 
+
+        private void AtualizaDataGrid()
+        {
+            AgendaController controleCategoria = new AgendaController();
+            DataTable tabela = controleCategoria.GetContatos();
+            dgvAgenda.DataSource = tabela;
+        }
+
         private void FrmAgenda_Load(object sender, EventArgs e)
         {
-            CategoriaController controleCategoria = new CategoriaController();
-            DataTable tabela = controleCategoria.GetCategorias();
-            dgvAgenda.DataSource = tabela;
+            AtualizaDataGrid();
         }
 
         private void btnCadastrarContato_Click(object sender, EventArgs e)
         {
             //Pegando os dados do Formulario
             string contato = txtContato.Text;
-            int telefone = Convert.ToInt32(txtTelefone.Text);
+            string telefone = Convert.ToString(txtTelefone.Text);
             string categoria = txtCategoria.Text;
 
             //Instanciando o objeto categoriaController
@@ -40,10 +46,7 @@ namespace ProjetoAgenda.Views
 
             if (resultado)
             {
-                MessageBox.Show("Contato cadastrado com sucesso.");
-                CategoriaController controleCategoria = new CategoriaController();
-                DataTable tabela = controleCategoria.GetCategorias();
-                dgvAgenda.DataSource = tabela;
+                AtualizaDataGrid();
             }
 
             else
@@ -55,20 +58,17 @@ namespace ProjetoAgenda.Views
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             //Pegando os dados do Data Grid View
-            int codigo = Convert.ToInt32(dgvAgenda.SelectedRows[0].Cells[0].Value);
+            int cod_contato = Convert.ToInt32(dgvAgenda.SelectedRows[0].Cells[0].Value);
 
             //Instanciando o objeto AgendaController
             AgendaController controleUsuario = new AgendaController();
 
             //Excluindo o contato, está com problema
-            bool resultado = controleUsuario.ExcluirContato(contato);
+            bool resultado = controleUsuario.ExcluirContato(cod_contato);
 
             if (resultado)
             {
-                MessageBox.Show("Contato excluído com sucesso.");
-                CategoriaController controleCategoria = new CategoriaController();
-                DataTable tabela = controleCategoria.GetCategorias();
-                dgvAgenda.DataSource = tabela;
+                AtualizaDataGrid();
             }
 
             else
@@ -81,20 +81,20 @@ namespace ProjetoAgenda.Views
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             //Pegando os dados do Data Grid View
-            int codigo = Convert.ToInt32(dgvAgenda.SelectedRows[0].Cells[0].Value);
+            int cod_contato = Convert.ToInt32(dgvAgenda.SelectedRows[0].Cells[0].Value);
+            string contato = txtContato.Text;
+            string telefone = Convert.ToString(txtTelefone.Text);
+            string categoria = txtCategoria.Text;
 
             //Instanciando o objeto AgendaController
             AgendaController controleUsuario = new AgendaController();
 
             //Inserindo o contato, está com problema
-            bool resultado = controleUsuario.AlterarContato(contato);
+            bool resultado = controleUsuario.AlterarContato(cod_contato, contato, telefone, categoria);
 
             if (resultado)
             {
-                MessageBox.Show("Categoria excluida com sucesso");
-                CategoriaController controleCategoria = new CategoriaController();
-                DataTable tabela = controleCategoria.GetCategorias();
-                dgvAgenda.DataSource = tabela;
+                AtualizaDataGrid();
             }
 
             else

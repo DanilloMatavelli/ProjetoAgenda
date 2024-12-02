@@ -13,7 +13,7 @@ namespace ProjetoAgenda.Controller
     internal class AgendaController
     {
 
-        public bool AddContato(string contato ,int telefone, string categoria)
+        public bool AddContato(string contato ,string telefone, string categoria)
         {
             try
             {
@@ -36,6 +36,7 @@ namespace ProjetoAgenda.Controller
                 comando.Parameters.AddWithValue("@contato", contato);
                 comando.Parameters.AddWithValue("@telefone", telefone);
                 comando.Parameters.AddWithValue("@categoria", categoria);
+
 
                 //Executando no banco de dados
                 int LinhasAfetadas = comando.ExecuteNonQuery();
@@ -70,12 +71,11 @@ namespace ProjetoAgenda.Controller
                 // Inserindo a conexão usando a ConexaoDB que eu já havia criado
                 conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
-                string sql = @"SELECT cod_contato AS 'Código', 
-                         contato AS 'contato', 
-                         telefone AS 'telefone', 
-                         categoria AS 'categoria'
-                         FROM tbContatos;
-                         WHERE usuario = USER();";
+                string sql = @"SELECT cod_contato,
+                             contato AS 'contato', 
+                             telefone AS 'telefone', 
+                             categoria AS 'categoria'
+                             FROM tbContatos;";
                 //Abri Conexão
                 conexao.Open();
 
@@ -103,7 +103,7 @@ namespace ProjetoAgenda.Controller
 
         }
 
-        public bool ExcluirContato(string contato)
+        public bool ExcluirContato(int cod_contato)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace ProjetoAgenda.Controller
 
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
-                comando.Parameters.AddWithValue("@cod_contato", contato);
+                comando.Parameters.AddWithValue("@cod_contato", cod_contato);
 
                 //Executando no banco de dados
                 int LinhasAfetadas = comando.ExecuteNonQuery();
@@ -146,7 +146,7 @@ namespace ProjetoAgenda.Controller
             }
         }
 
-        public bool AlterarContato(string contato)
+        public bool AlterarContato(int cod_contato, string contato, string telefone, string categoria)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "UPDATE tbcontatos SET contato = @contato WHERE cod_contato = @cod_contato;";
+                string sql = "UPDATE tbcontatos SET contato = @contato, telefone = @telefone, categoria= @categoria WHERE cod_contato = @cod_contato;";
 
 
                 //Abri a conexão com o banco
@@ -166,7 +166,10 @@ namespace ProjetoAgenda.Controller
 
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
-                comando.Parameters.AddWithValue("@cod_contato", contato);
+                comando.Parameters.AddWithValue("@cod_contato", cod_contato);
+                comando.Parameters.AddWithValue("@contato", contato);
+                comando.Parameters.AddWithValue("@telefone", telefone);
+                comando.Parameters.AddWithValue("@categoria", categoria);
 
 
                 //Executando no banco de dados

@@ -39,12 +39,12 @@ namespace ProjetoAgenda.Views
             //Inserindo o usuário
             bool resultado = controleUsuario.AddCategoria(categoria);
 
+            
             if (resultado)
             {
                 MessageBox.Show("Categoria cadastrada com sucesso");
-                CategoriaController controleCategoria = new CategoriaController();
-                DataTable tabela = controleCategoria.GetCategorias();
-                dgvCategoria.DataSource = tabela;
+
+                 AtualizaDataGrid();
             }
 
             else
@@ -56,9 +56,7 @@ namespace ProjetoAgenda.Views
 
         private void FrmCategoria_Load(object sender, EventArgs e)
         {
-            CategoriaController controleCategoria = new CategoriaController();
-            DataTable tabela = controleCategoria.GetCategorias();
-            dgvCategoria.DataSource = tabela;
+            AtualizaDataGrid();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -74,10 +72,7 @@ namespace ProjetoAgenda.Views
 
             if (resultado)
             {
-                MessageBox.Show("Categoria excluida com sucesso");
-                CategoriaController controleCategoria = new CategoriaController();
-                DataTable tabela = controleCategoria.GetCategorias();
-                dgvCategoria.DataSource = tabela;
+                AtualizaDataGrid();
             }
 
             else
@@ -109,10 +104,7 @@ namespace ProjetoAgenda.Views
 
             if (resultado)
             {
-                MessageBox.Show("Categoria excluida com sucesso");
-                CategoriaController controleCategoria = new CategoriaController();
-                DataTable tabela = controleCategoria.GetCategorias();
-                dgvCategoria.DataSource = tabela;
+                AtualizaDataGrid();
             }
 
             else
