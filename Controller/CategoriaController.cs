@@ -147,7 +147,7 @@ namespace ProjetoAgenda.Controller
 
         }
 
-        public bool AlterarCategoria(string categoria)
+        public bool AlterarCategoria(int codigo, string categoria)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace ProjetoAgenda.Controller
                 MySqlConnection conexao = ConexaoDB.CriarConexao();
 
                 //Comando SQL que será executado
-                string sql = "UPDATE tbCategoria SET usuario = @usuario WHERE cod_categoria = @cod_categoria;";
+                string sql = "UPDATE tbcategoria SET usuario = @usuario WHERE cod_categoria = @cod_categoria;";
 
 
                 //Abri a conexão com o banco
@@ -166,7 +166,8 @@ namespace ProjetoAgenda.Controller
 
                 //Estou trocando o valor dos @ pelas informações que serão cadastradas
                 //Essas informações vieram dos parametros da função
-                comando.Parameters.AddWithValue("@cod_categoria", categoria);
+                comando.Parameters.AddWithValue("@cod_categoria", codigo);
+                comando.Parameters.AddWithValue("@categoria", categoria);
                 
 
                 //Executando no banco de dados

@@ -95,12 +95,13 @@ namespace ProjetoAgenda.Views
         {
             //Pegando os dados do Data Grid View
             int codigo = Convert.ToInt32(dgvCategoria.SelectedRows[0].Cells[0].Value);
+            string categoria = txtInsiraCategoria.Text;
 
             //Instanciando o objeto categoriaController
             CategoriaController controleUsuario = new CategoriaController();
 
             //Inserindo o usuário
-            bool resultado = controleUsuario.AlterarCategoria(categoria);
+            bool resultado = controleUsuario.AlterarCategoria(codigo, categoria);
 
             if (resultado)
             {
