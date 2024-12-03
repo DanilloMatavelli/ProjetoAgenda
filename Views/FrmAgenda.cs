@@ -102,5 +102,10 @@ namespace ProjetoAgenda.Views
                 MessageBox.Show("Não foi possivel alterar o Contato");
             }
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

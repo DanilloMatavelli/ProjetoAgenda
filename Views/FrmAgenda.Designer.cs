@@ -40,12 +40,15 @@
             label1 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             dgvAgenda = new DataGridView();
+            button1 = new Button();
+            btnSair = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAgenda).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnSair);
             groupBox1.Controls.Add(txtCategoria);
             groupBox1.Controls.Add(btnAlterar);
             groupBox1.Controls.Add(btnExcluir);
@@ -149,11 +152,31 @@
             dgvAgenda.Size = new Size(384, 394);
             dgvAgenda.TabIndex = 9;
             // 
+            // button1
+            // 
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 10;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // btnSair
+            // 
+            btnSair.Location = new Point(114, 322);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(83, 32);
+            btnSair.TabIndex = 10;
+            btnSair.Text = "Sair";
+            btnSair.UseVisualStyleBackColor = true;
+            btnSair.Click += btnSair_Click;
+            // 
             // FrmAgenda
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 431);
+            Controls.Add(button1);
             Controls.Add(dgvAgenda);
             Controls.Add(groupBox1);
             Name = "FrmAgenda";
@@ -179,5 +202,7 @@
         private Button btnCadastrarContato;
         private DataGridView dgvAgenda;
         private TextBox txtCategoria;
+        private Button btnSair;
+        private Button button1;
     }
 }

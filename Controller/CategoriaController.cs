@@ -108,7 +108,7 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
-                MySqlConnection conexao = ConexaoDB.CriarConexao();
+                MySqlConnection conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //Comando SQL que será executado
                 string sql = "DELETE FROM tbCategoria WHERE cod_categoria = @cod_categoria;";
@@ -152,10 +152,10 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
-                MySqlConnection conexao = ConexaoDB.CriarConexao();
+                MySqlConnection conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //Comando SQL que será executado
-                string sql = "UPDATE tbcategoria SET usuario = @usuario WHERE cod_categoria = @cod_categoria;";
+                string sql = "UPDATE tbcategoria SET categoria = @categoria WHERE cod_categoria = @cod_categoria;";
 
 
                 //Abri a conexão com o banco

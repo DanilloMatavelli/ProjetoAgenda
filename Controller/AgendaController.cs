@@ -75,7 +75,8 @@ namespace ProjetoAgenda.Controller
                              contato AS 'contato', 
                              telefone AS 'telefone', 
                              categoria AS 'categoria'
-                             FROM tbContatos;";
+                             FROM tbContatos
+                             WHERE usuario = User();";
                 //Abri Conexão
                 conexao.Open();
 
@@ -108,7 +109,7 @@ namespace ProjetoAgenda.Controller
             try
             {
                 //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
-                MySqlConnection conexao = ConexaoDB.CriarConexao();
+                MySqlConnection conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //Comando SQL que será executado
                 string sql = "DELETE FROM tbContatos WHERE cod_contato = @cod_contato;";
@@ -152,7 +153,7 @@ namespace ProjetoAgenda.Controller
             {
 
                 //Cria a conexão, estou utilizando a classe ConexaoDB que está dentro da pasta DATA
-                MySqlConnection conexao = ConexaoDB.CriarConexao();
+                MySqlConnection conexao = ConexaoDB.CriarConexao(UserSession.usuario, UserSession.senha);
 
                 //Comando SQL que será executado
                 string sql = "UPDATE tbcontatos SET contato = @contato, telefone = @telefone, categoria= @categoria WHERE cod_contato = @cod_contato;";
